@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        <script src="https://cdn.jsdelivr.net/npm/mo-js@latest/build/mo.min.js"></script>
+        <script>
+            var c1 = new mojs.Shape({
+            shape: 'circle',
+            /*
+            절대적인값, 0에서 100으로 크기가 변화됨(에니메이션효과)
+            */
+            radius: {0:'rand(10, 50)'},
+            /*
+            상대적인 값(*N)
+            scale:2,
+            */
+            left:0,
+            top:0,
+            /*
+            -값은 string변수로 취급되서 ''를 붙여야함
+            x:{'-100': 100},
+            y:-100,
+            */
+            x:0,
+            y:0,
+            fill:'yellow',
+            stroke:'red',
+            strokeWidth:{0:'rand(1, 10)'},
+            /*재생속도, 단위는 ms*/
+            duration:'rand(200, 2000)',
+            /*n초뒤에 액션이 실행, 단위는 ms*/
+            delay:'rand(100, 3000)',
+            });
+
+            /*문서의 어딘가를 클릭했을 때 정의한 함수를 호출*/
+            document.addEventListener('click', function(e){
+                /*
+                replay : 실행되는 도중에 액션을 실행 할 시 다시 실행됨
+                generate : 새로고침할 필요없게 적용
+                tune : 실행할 때 마다 프로퍼티를 조율
+                */
+                c1.generate().tune({x:e.pageX, y:e.pageY}).replay();
+            });
+        </script>
+    </body>
+</html>
+
+<!--https://github.com/mojs/mojs-->
